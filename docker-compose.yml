@@ -1,0 +1,56 @@
+services:
+  app:
+    image: fireflyiii/core:latest
+    hostname: app
+    restart: unless-stopped
+    volumes:
+      - $DATA/firefly_iii_upload:/var/www/html/storage/upload
+    ports:
+      - $FIREFLY_PORT:8080
+    environment:
+      - APP_KEY=$APP_KEY
+      - TRUSTED_PROXIES=$TRUSTED_PROXIES
+      - DB_CONNECTION=$DB_CONNECTION
+      - DB_HOST=$DB_HOST
+      - DB_PORT=$DB_PORT
+      - DB_DATABASE=$DB_DATABASE
+      - DB_USERNAME=$DB_USERNAME
+      - DB_PASSWORD=$DB_PASSWORD
+      - STATIC_CRON_TOKEN=$STATIC_CRON_TOKEN
+    depends_on:
+      - db
+  db:
+    image: mariadb
+    hostname: db
+    restart: unless-stopped
+    volumes:
+      - $DATA/firefly_iii_db:/var/lib/mysql
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_USER=$DB_USERNAME
+      - MYSQL_PASSWORD=$DB_PASSWORD
+      - MYSQL_DATABASE=$DB_DATABASE
+  importer:
+    image: fireflyiii/data-importer:latest
+    hostname: importer
+    volumes:
+      - $DATA/firefly_importer:/import
+    restart: unless-stopped
+    ports:
+      - $IMPORTER_PORT:8080
+    depends_on:
+      - app
+    environment:
+      - IMPORTER_PORT=$IMPORTER_PORT
+      - NORDIGEN_ID=$NORDIGEN_ID
+      - NORDIGEN_KEY=$NORDIGEN_KEY
+      - AUTO_IMPORT_SECRET=$AUTO_IMPORT_SECRET
+      - IMPORT_DIR_ALLOWLIST=$IMPORT_DIR_ALLOWLIST
+      - CAN_POST_AUTOIMPORT=true
+      - FIREFLY_III_URL=$FIREFLY_III_URL
+      - FIREFLY_III_ACCESS_TOKEN=$FIREFLY_III_ACCESS_TOKEN
+  cronjob:
+    image: cronjob
+    restart: unless-stopped
+    container_name: cronjob
+    build: ./cronjobs/
