@@ -6,7 +6,7 @@ services:
     volumes:
       - $DATA/firefly_iii_upload:/var/www/html/storage/upload
     ports:
-      - $FIREFLY_PORT:8080
+      - 20001:8080
     environment:
       - APP_KEY=$APP_KEY
       - TRUSTED_PROXIES=$TRUSTED_PROXIES
@@ -37,7 +37,7 @@ services:
       - $DATA/firefly_importer:/import
     restart: unless-stopped
     ports:
-      - $IMPORTER_PORT:8080
+      - 20002:8080
     depends_on:
       - app
     environment:
