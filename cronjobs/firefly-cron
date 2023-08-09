@@ -1,0 +1,2 @@
+0 6 * * * wget -qO- http://app:8080/api/v1/cron/$STATIC_CRON_TOKEN
+0 6 * * * curl --location --request POST 'http://importer:8080/autoimport?directory=/import&secret=$AUTO_IMPORT_SECRET'
