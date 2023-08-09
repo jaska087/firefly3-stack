@@ -14,8 +14,8 @@ You only need to fill in these variables on first boot.
 Once you have confirmed Firefly III is working proceed to next step.
 
 1. Add every bank account to firefly III you plan on using with nordigen and set starting balance FROM the date you plan on pulling data off.
-3. Create Your Access Token for your Data Importer by opening FireFly III -> "Options/Profile/OAuth/Personal Access Tokens" Create new Access token and add the string to your .env file FIREFLY_III_ACCESS_TOKEN
-5. Create account on Nordigen and go to "Projects/User Secrets" and click Create New. Add these to .env file. ID to NORDIGEN_ID and key to NORDIGEN_KEY
+2. Create Your Access Token for your Data Importer by opening FireFly III -> "Options/Profile/OAuth/Personal Access Tokens" Create new Access token and add the string to your .env file FIREFLY_III_ACCESS_TOKEN
+3. Create account on Nordigen and go to "Projects/User Secrets" and click Create New. Add these to .env file. ID to NORDIGEN_ID and key to NORDIGEN_KEY
 
 Restart your docker-compose with these new changes.
 
