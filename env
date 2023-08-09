@@ -1,0 +1,27 @@
+#Generic
+DATA=/data
+TZ=Europe/Helsinki
+
+#FireFly III
+FIREFLY_PORT=20001
+APP_KEY= # 32 CHAR RANDOM STRING
+STATIC_CRON_TOKEN= # 32 CHAR RANDOM STRING
+TRUSTED_PROXIES=** # Reverse Proxies
+DB_CONNECTION=mysql
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=firefly_db
+DB_USERNAME=firefly_user
+DB_PASSWORD=firefly_password
+
+#DataImporter
+IMPORTER_PORT=20002
+# Get these from Nordigen, under Projects/User Secrets and click Create New
+NORDIGEN_ID=
+NORDIGEN_KEY=
+AUTO_IMPORT_SECRET= # 16 CHAR RANDOM STRING
+IMPORT_DIR_ALLOWLIST=/import
+CAN_POST_AUTOIMPORT=true
+FIREFLY_III_URL=http://app:8080
+# YOUR HELLA LONG ACCESS TOKEN from firefly III Options/Profile/OAuth/Personal Access Tokens
+FIREFLY_III_ACCESS_TOKEN= 
