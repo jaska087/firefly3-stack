@@ -41,7 +41,6 @@ services:
     depends_on:
       - app
     environment:
-      - IMPORTER_PORT=$IMPORTER_PORT
       - NORDIGEN_ID=$NORDIGEN_ID
       - NORDIGEN_KEY=$NORDIGEN_KEY
       - AUTO_IMPORT_SECRET=$AUTO_IMPORT_SECRET
